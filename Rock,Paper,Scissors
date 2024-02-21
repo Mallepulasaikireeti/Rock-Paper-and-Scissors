@@ -1,0 +1,37 @@
+import random
+
+def get_user_choice():
+    print("Enter your choice: (0) Rock, (1) Paper, (2) Scissors")
+    user_choice = input()
+    if user_choice.isdigit():
+        user_choice = int(user_choice)
+        if user_choice in [0, 1, 2]:
+            return user_choice
+        else:
+            print("Invalid choice. Please enter again.")
+            return get_user_choice()
+    else:
+        print("Invalid input. Please enter again.")
+        return get_user_choice()
+
+def get_computer_choice():
+    return random.randint(0, 2)
+
+def determine_winner(user_choice, computer_choice):
+    if user_choice == computer_choice:
+        return "It's a tie!"
+    elif (user_choice == 0 and computer_choice == 2) or (user_choice == 1 and computer_choice == 0) or (user_choice == 2 and computer_choice == 1):
+        return "You win!"
+    else:
+        return "You lose."
+
+def main():
+    print("Let's play rock-paper-scissors!")
+    user_choice = get_user_choice()
+    computer_choice = get_computer_choice()
+    print("You chose: " + ["Rock", "Paper", "Scissors"][user_choice])
+    print("Computer chose: " + ["Rock", "Paper", "Scissors"][computer_choice])
+    print(determine_winner(user_choice, computer_choice))
+
+if __name__ == "__main__":
+    main()
